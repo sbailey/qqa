@@ -108,6 +108,8 @@ def plot_spectra_spectro(data, expid_num, frame, n, num_fibs=3, height=220, widt
         )
 
         fig.add_tools(hover)
+        fig.xaxis.axis_label = 'Wavelength (angstroms)'
+        fig.yaxis.axis_label = 'Flux (count/angstrom)'
         if spectro not in [0, 5]:
             fig.yaxis.visible = False
             fig.plot_width = width
@@ -235,6 +237,8 @@ def plot_spectra_objtype(data, expid_num, frame, n, num_fibs=5, height=500, widt
         fig.add_layout(Title(text= "Downsample: {}".format(n), text_font_style="italic"), 'above')
         fig.add_layout(Title(text= "Fibers: {}".format(com), text_font_style="italic"), 'above')
         fig.add_layout(Title(text= "OBJTYPE: {}".format(obj), text_font_size="16pt"), 'above')
+        fig.xaxis.axis_label = 'Wavelength (angstroms)'
+        fig.yaxis.axis_label = 'Flux (count/angstrom)'
 
         tooltips = tooltips=[
             ("Fiber", "@fiber"),
@@ -378,5 +382,7 @@ def plot_spectra_input(datadir, expid_num, frame, n, select_string, height=500, 
         upper = int(np.percentile(flux_total, 99.99))
     fig.y_range = Range1d(int(-0.02*upper), upper)
     fig.yaxis.formatter = NumeralTickFormatter(format='0a')
+    fig.xaxis.axis_label = 'Wavelength (angstroms)'
+    fig.yaxis.axis_label = 'Flux (count/angstrom)'
 
     return fig
